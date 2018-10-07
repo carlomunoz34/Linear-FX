@@ -483,8 +483,8 @@ public class VectorsGUI extends Application {
 		Scene scene = new Scene(root, 1000, 500);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
-		stage.setHeight(875);
-		stage.setWidth(635);
+		stage.setHeight(800);
+		stage.setWidth(515);
 		stage.setResizable(false);
 		stage.setTitle("Operaciones vectoriales");
 		stage.show();

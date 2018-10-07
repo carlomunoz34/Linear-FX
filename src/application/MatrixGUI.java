@@ -450,6 +450,8 @@ public class MatrixGUI extends Application {
 
 		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 		stage.setHeight(primaryScreenBounds.getHeight());
+		stage.setHeight(650);
+		stage.setWidth(1000);
 		stage.setResizable(false);
 		stage.setTitle("Operaciones matriciales");
 		stage.show();

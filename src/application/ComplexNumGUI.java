@@ -504,8 +504,8 @@ public class ComplexNumGUI extends Application {
 		Scene scene = new Scene(root, 1000, 500);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
-		stage.setHeight(800);
-		stage.setWidth(600);
+		stage.setHeight(600);
+		stage.setWidth(515);
 		stage.setTitle("Números Complejos");
 		stage.show();
 		stage.centerOnScreen();
