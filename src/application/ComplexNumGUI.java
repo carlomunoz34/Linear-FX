@@ -81,7 +81,7 @@ public class ComplexNumGUI extends Application {
 		mainTable.setStyle("-fx-min-height:300px; -fx-min-width:100px; -fx-padding:5px; -fx-padding-top:10px;");
 		Label historyL = new Label("Números complejos utilizables:");
 		TextArea complexNumberHistory = new TextArea();
-		complexNumberHistory.setStyle("-fx-min-height:400px");
+		complexNumberHistory.setStyle("-fx-min-height:20px");
 		HBox clear = new HBox();
 		Button reset = new Button("Limpiar");
 		clear.setSpacing(5);
@@ -93,7 +93,7 @@ public class ComplexNumGUI extends Application {
 
 		// Espacio para los resultados
 		VBox results = new VBox();
-		results.setStyle("-fx-min-height:300px; -fx-min-width:100px; -fx-padding:5px;");
+		results.setStyle("-fx-min-height:50px; -fx-min-width:50px; -fx-padding:5px;");
 		Label resl1 = new Label("Resultado:");
 		TextArea resTxtArea = new TextArea();
 		results.getChildren().addAll(resl1, resTxtArea);
@@ -481,10 +481,9 @@ public class ComplexNumGUI extends Application {
 		});
 
 		// Inverso
-		tanElement.setOnAction((event) -> {
+		invElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el ID del número complejo al cual calcular su inverso"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del número complejo al cual calcular su inverso"));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(A.inverse());
@@ -505,8 +504,8 @@ public class ComplexNumGUI extends Application {
 		Scene scene = new Scene(root, 1000, 500);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
-		stage.setHeight(875);
-		stage.setWidth(635);
+		stage.setHeight(800);
+		stage.setWidth(600);
 		stage.setTitle("Operaciones");
 		stage.show();
 		stage.centerOnScreen();

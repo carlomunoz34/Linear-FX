@@ -224,7 +224,7 @@ public class VectorControl extends Vector {
 	 * @return vectorAux3 el resultado del proceso V  de Graham 
 	 * @throws NullElementException En caso que los atributos de v1 o v2 (i,j,k) sean iguales a 0  
 	 */ 
-	@SuppressWarnings("unused") 
+	@SuppressWarnings("unused")
 	private static Vector gramSchObtenerV(Vector v2, Vector u1 ) throws NullElementException  { 
 		if( (v2.getI() == 0 && v2.getJ() == 0 && v2.getK() == 0 ) ||  (u1.getI() == 0 && u1.getJ() == 0 && u1.getK() == 0) ) { 
 			throw new NullElementException("The vector to have numbers in the components"); 
