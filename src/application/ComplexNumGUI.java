@@ -506,7 +506,7 @@ public class ComplexNumGUI extends Application {
 		stage.setScene(scene);
 		stage.setHeight(800);
 		stage.setWidth(600);
-		stage.setTitle("Operaciones");
+		stage.setTitle("Números Complejos");
 		stage.show();
 		stage.centerOnScreen();
 

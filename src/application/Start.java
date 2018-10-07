@@ -70,7 +70,7 @@ public class Start extends Application {
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.centerOnScreen();
-		stage.setTitle("LineAlgebra GUI");
+		stage.setTitle("Linear FX");
 		stage.show();
 	}
 
