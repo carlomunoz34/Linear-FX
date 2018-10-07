@@ -47,7 +47,7 @@ public class Start extends Application {
 		});
 		
 		//Create the Linear transformation button
-		Button ltBtn = new Button("Linear Transformation");
+		Button ltBtn = new Button("Transformación Lineal");
 		//Set their dimmens
 		ltBtn.setPrefWidth(280d);
 		ltBtn.setPrefHeight(20d);

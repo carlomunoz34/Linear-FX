@@ -2,7 +2,6 @@ package application;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,7 +10,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -31,18 +29,18 @@ public class LinearTransformationGUI extends Application {
 
 		// Menus of the bar
 		// The history of the most recent lt (linear transformation) used
-		Menu history = new Menu("History");
+		Menu history = new Menu("Historial");
 		// The saved lt will be displayed here
-		Menu favorites = new Menu("Favorites");
+		Menu favorites = new Menu("Favoritos");
 		// Generate the lt for some vector rotations
-		Menu rotations = new Menu("Rotation");
+		Menu rotations = new Menu("Rotaciones");
 		// Change style preference an help
-		Menu preferences = new Menu("Preferences");
+		Menu preferences = new Menu("Preferencias");
 
 		// Items of the menu
 		// If the menu have no items, this items must be displayed in their own section:
-		MenuItem historyEmpty = new MenuItem("(empty)");
-		MenuItem favoritesEmpty = new MenuItem("(empty)");
+		MenuItem historyEmpty = new MenuItem("(vacio)");
+		MenuItem favoritesEmpty = new MenuItem("(vacio)");
 
 		// History items
 		// TODO it should be an item for each lt in the history
@@ -56,15 +54,15 @@ public class LinearTransformationGUI extends Application {
 
 		// Rotation items
 		// The degrees of the rotations are according with the clock
-		MenuItem rotate90  = new MenuItem("rotate 90\" to the right");
-		MenuItem rotate180 = new MenuItem("rotate 180\"");
-		MenuItem rotate270 = new MenuItem("rotate 90\" to the left");
+		MenuItem rotate90  = new MenuItem("rotar 90\" a la derecha");
+		MenuItem rotate180 = new MenuItem("rotar 180\"");
+		MenuItem rotate270 = new MenuItem("rotar 90\" a la izquierda");
 		// Add the items to rotation section
 		rotations.getItems().addAll(rotate90, rotate180, rotate270);
 
 		// Preferences items
 		// Go home gives the option to go back to home
-		MenuItem goHome = new MenuItem("Go home");
+		MenuItem goHome = new MenuItem("Ir a la pantalla principal");
 		goHome.setOnAction((value) -> {
 			Start goBack = new Start();
 			try {
@@ -74,7 +72,7 @@ public class LinearTransformationGUI extends Application {
 			}
 		});
 		// Help displays how to use this section
-		MenuItem help = new MenuItem("Help");
+		MenuItem help = new MenuItem("Ayuda");
 		// Add items to the help section
 		preferences.getItems().addAll(goHome, help);
 
@@ -89,7 +87,7 @@ public class LinearTransformationGUI extends Application {
 		GridPane gridPane = new GridPane();
 		
 		//In this part you can modify or create the lt
-		Label transformationLbl = new Label("Transformation");
+		Label transformationLbl = new Label("Transformación");
 		GridPane.setConstraints(transformationLbl, 0, 0);
 
 		//The purpose of this text area is to introduce the equations of the lt per line
@@ -101,7 +99,7 @@ public class LinearTransformationGUI extends Application {
 		gridPane.getChildren().addAll(transformationLbl, equationTA);
 		
 		//In this one, you can modify the matrix of the lt
-		Label matrixLbl = new Label("Matrix");
+		Label matrixLbl = new Label("Matriz");
 		GridPane.setConstraints(matrixLbl, 1, 0);
 		
 		TextArea matrixTA = new TextArea();
@@ -114,13 +112,13 @@ public class LinearTransformationGUI extends Application {
 		//And the buttons to save or modify the lt
 		VBox ltButtons 	 = new VBox();
 		
-		Button createBtn = new Button("Create");
+		Button createBtn = new Button("Crear");
 		createBtn.setPrefWidth(BUTTON_WIDTH);
 		
-		Button modifyBtn = new Button("Modify");
+		Button modifyBtn = new Button("Modificar");
 		modifyBtn.setPrefWidth(BUTTON_WIDTH);
 		
-		Button saveBtn 	 = new Button("Save");
+		Button saveBtn 	 = new Button("Guardar");
 		saveBtn.setPrefWidth(BUTTON_WIDTH);
 		
 		ltButtons.getChildren().addAll(createBtn, modifyBtn, saveBtn);
@@ -140,14 +138,14 @@ public class LinearTransformationGUI extends Application {
 		gridPane.getChildren().addAll(vectorLbl, vectorTA);
 		
 		//Button to generate the converted vector
-		Button convertBtn = new Button("Convert");
+		Button convertBtn = new Button("Convertir");
 		convertBtn.setPrefWidth(BUTTON_WIDTH);
 		
 		GridPane.setConstraints(convertBtn, 1, 3);
 		gridPane.getChildren().add(convertBtn);
 		
 		//The generated vector
-		Label resultLbl = new Label("Result");
+		Label resultLbl = new Label("Resultado:");
 	
 		GridPane.setConstraints(resultLbl, 2, 2);
 		
