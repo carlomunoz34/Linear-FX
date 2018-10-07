@@ -65,13 +65,15 @@ public class Start extends Application {
 		main.setSpacing(5d);
 		main.setPadding(new Insets(10, 0, 0, 10));
 		main.getChildren().addAll(complexNum, vectors, matrix, ltBtn);
-
+		main.setSpacing(5d);
+		main.setPadding(new Insets(10, 0, 0, 10));
+		main.getChildren().addAll(complexNum, vectors, matrix);
 		Scene scene = new Scene(main, 300, 500);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.centerOnScreen();
-		stage.setTitle("LineAlgebra GUI");
+		stage.setTitle("Linear FX");
 		stage.show();
 	}
 
