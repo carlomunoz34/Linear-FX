@@ -51,6 +51,7 @@ public class Start extends Application {
 		
 		Scene scene = new Scene(main,300,500);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.centerOnScreen();
 		stage.setTitle("LineAlgebra GUI");
