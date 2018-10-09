@@ -28,13 +28,13 @@ public class LinearTransformationGUI extends Application {
 		MenuBar menuBar = new MenuBar();
 
 		// Menus of the bar
-		// The history of the most recent lt (linear transformation) used
+		// The most recent lt (linear transformation) used will appear here
 		Menu history = new Menu("Historial");
 		// The saved lt will be displayed here
 		Menu favorites = new Menu("Favoritos");
 		// Generate the lt for some vector rotations
 		Menu rotations = new Menu("Rotaciones");
-		// Change style preference an help
+		// Change style preference and help
 		Menu preferences = new Menu("Preferencias");
 
 		// Items of the menu
@@ -87,7 +87,7 @@ public class LinearTransformationGUI extends Application {
 		GridPane gridPane = new GridPane();
 		
 		//In this part you can modify or create the lt
-		Label transformationLbl = new Label("Transformación");
+		Label transformationLbl = new Label("Transformaciï¿½n");
 		GridPane.setConstraints(transformationLbl, 0, 0);
 
 		//The purpose of this text area is to introduce the equations of the lt per line
@@ -164,9 +164,7 @@ public class LinearTransformationGUI extends Application {
 		root.getChildren().add(gridPane);
 
 		// Add all to the stage
-		Scene scene = new Scene(root, 400, 500);
-		primaryStage.setHeight(440);
-		primaryStage.setWidth(420);
+		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
