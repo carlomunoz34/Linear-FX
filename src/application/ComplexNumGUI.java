@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import calculations.ComplexNumber;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,6 +16,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -67,7 +70,8 @@ public class ComplexNumGUI extends Application {
 		// Menú de regresar al menu principal
 		Menu change = new Menu("Cambiar Pestaña");
 		MenuItem backButton = new MenuItem("Menú Principal");
-		change.getItems().addAll(backButton);
+		MenuItem infoButton = new MenuItem("Información de numeros complejos");
+		change.getItems().addAll(backButton, infoButton);
 
 		// Añadir todo al menú
 		menu.getMenus().addAll(menuLoad, menuBasicOps, menuSpecOps, change);
@@ -106,7 +110,7 @@ public class ComplexNumGUI extends Application {
 		root.getChildren().addAll(menu, mainResults);
 
 		// Eventos
-		// Regresar al menu principal
+		// Regresar al menu principal		
 		backButton.setOnAction((event) -> {
 			Start main = new Start();
 			try {
@@ -115,6 +119,21 @@ public class ComplexNumGUI extends Application {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		});
+		
+		// Mostrar información
+		infoButton.setOnAction((event) -> {
+			
+			Image infoImg = new Image("\\application\\complexNumberInfo.png");
+			ImageView imgv = new ImageView();
+			imgv.setImage(infoImg);
+			HBox hBox = new HBox();
+			hBox.getChildren().add(imgv);
+			Group newRoot = new Group();
+			Scene scene = new Scene(newRoot);
+			newRoot.getChildren().add(hBox);
+			stage.setScene(scene);
+			stage.show();
 		});
 
 		// Limpiar resultados e historial
