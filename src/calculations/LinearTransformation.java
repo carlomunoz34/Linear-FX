@@ -29,7 +29,7 @@ public class LinearTransformation {
 	 * @param vector is the vector which the operation will be applied
 	 * @return the result of the transformation
 	 */
-	public Matrix apply(Matrix vector) throws IllegalArgumentException {
+	public Matrix apply(Matrix vector) throws IllegalDimensionException {
 		return matrix.crossProduct(vector);
 	}
 
@@ -39,14 +39,23 @@ public class LinearTransformation {
 	 * @return a string which contains the equation
 	 */
 	public String getEquation() {
-		if (equation != "") {
+		if (equation == "") {
 			StringBuilder sb = new StringBuilder();
 
-			for (int i = 0; i < matrix.getColumns(); i++) {
-				for (int j = 0; j < matrix.getRows(); j++) {
-					sb.append(String.format("%d%s", matrix.get(i, j), (char) (('x' - 'a' + j) % ('z' - 'a') + 'a')));
-					if (j < matrix.getRows() - 1)
-						sb.append(" + ");
+			for (int i = 0; i < matrix.getRows(); i++) {
+				for (int j = 0; j < matrix.getColumns(); j++) {
+					if (matrix.get(i, j) != 0) {
+						if (j != 0 && matrix.get(i, j) > 0)
+							sb.append(" + ");
+						else if (matrix.get(i, j) < 0)
+							sb.append(" - ");
+
+						if (Math.abs(matrix.get(i, j)) > 1)
+							sb.append(String.format("%.2f%c", Math.abs(matrix.get(i, j)),
+									(char) (('x' - 'a' + j) % ('z' - 'a' + 1) + 'a')));
+						else
+							sb.append(String.format("%c", (char) (('x' - 'a' + j) % ('z' - 'a' + 1) + 'a')));
+					}
 				}
 
 				sb.append('\n');
@@ -73,7 +82,7 @@ public class LinearTransformation {
 		this.name = name;
 	}
 
-	public class Matrix {
+	public static class Matrix {
 		private double[][] matrix;
 		private int columns, rows;
 
@@ -94,7 +103,7 @@ public class LinearTransformation {
 
 			if (matrix != null) {
 				rows = matrix.length;
-				if (rows > 1 && matrix[0] != null)
+				if (rows >= 1 && matrix[0] != null)
 					columns = matrix[0].length;
 			}
 		}
@@ -107,14 +116,14 @@ public class LinearTransformation {
 			return rows;
 		}
 
-		public Matrix crossProduct(Matrix other) throws IllegalArgumentException {
+		public Matrix crossProduct(Matrix other) throws IllegalDimensionException {
 			if (this.columns != other.rows)
-				throw new IllegalArgumentException();
+				throw new IllegalDimensionException();
 
 			double[][] result = new double[this.rows][other.columns];
 
-			for (int i = 0; i < columns; i++) {
-				for (int j = 0; j < rows; j++) {
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < other.columns; j++) {
 					for (int k = 0; k < columns; k++) {
 						result[i][j] += this.matrix[i][k] * other.matrix[k][j];
 					}
@@ -122,6 +131,14 @@ public class LinearTransformation {
 			}
 
 			return new Matrix(result);
+		}
+
+		public void printMat() {
+			for (int i = 0; i < matrix.length; i++) {
+				for (int j = 0; j < matrix[i].length; j++)
+					System.out.print(matrix[i][j] + " ");
+				System.out.println();
+			}
 		}
 
 	}

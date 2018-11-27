@@ -1,9 +1,14 @@
 package application;
 
+import calculations.IllegalDimensionException;
+import calculations.LinearTransformationControl;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -16,9 +21,12 @@ import javafx.stage.Stage;
 public class LinearTransformationGUI extends Application {
 	private static final double TEXT_AREA_HEIGHT = 120.0, TEXT_AREA_WIDTH = 100.0;
 	private static final double BUTTON_WIDTH = 70.0;
+	private LinearTransformationControl control;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		control = new LinearTransformationControl();
+		
 		// Root layout
 		VBox root = new VBox();
 
@@ -97,7 +105,7 @@ public class LinearTransformationGUI extends Application {
 
 		//The purpose of this text area is to show the equations of the lt per line
 		TextArea equationTA = new TextArea();
-		equationTA.setDisable(true);
+//		equationTA.setDisable(true);
 		equationTA.setPrefHeight(TEXT_AREA_HEIGHT);
 		equationTA.setPrefWidth(TEXT_AREA_WIDTH);
 		GridPane.setConstraints(equationTA, 0, 1);
@@ -124,7 +132,7 @@ public class LinearTransformationGUI extends Application {
 		Button modifyBtn = new Button("Modificar");
 		modifyBtn.setPrefWidth(BUTTON_WIDTH);
 		
-		Button saveBtn 	 = new Button("Guardar");
+		Button saveBtn = new Button("Guardar");
 		saveBtn.setPrefWidth(BUTTON_WIDTH);
 		
 		ltButtons.getChildren().addAll(createBtn, modifyBtn, saveBtn);
@@ -161,6 +169,23 @@ public class LinearTransformationGUI extends Application {
 		resultTA.setDisable(true);
 		GridPane.setConstraints(resultTA, 2, 3);
 		gridPane.getChildren().addAll(resultLbl, resultTA);
+		
+		createBtn.setOnAction(event ->
+				equationTA.setText(control.update(matrixTA.getText(), "")));
+		
+		convertBtn.setOnAction(event ->{
+				try {
+					resultTA.setText(control.applyTL(vectorTA.getText()));
+				} catch (IllegalDimensionException e) {
+					Alert alert = new Alert(AlertType.WARNING, "Dimensiones del vector o matriz no validas",
+							ButtonType.OK);
+					alert.show();
+				} catch (IllegalArgumentException e) {
+					Alert alert = new Alert(AlertType.WARNING, "Transformación lineal no creada",
+							ButtonType.OK);
+					alert.show();
+				}
+		});
 		
 		gridPane.setHgap(15.0);
 		gridPane.setVgap(10.0);
