@@ -34,8 +34,10 @@ public class LinearTransformationGUI extends Application {
 		Menu favorites = new Menu("Favoritos");
 		// Generate the lt for some vector rotations
 		Menu rotations = new Menu("Rotaciones");
-		// Change style preference and help
-		Menu preferences = new Menu("Preferencias");
+		// Change window
+		Menu changeWindow = new Menu("Cambiar Pestaña");
+		// Help displays how to use this section
+		Menu help = new Menu("Ayuda");
 
 		// Items of the menu
 		// If the menu have no items, this items must be displayed in their own section:
@@ -62,7 +64,7 @@ public class LinearTransformationGUI extends Application {
 
 		// Preferences items
 		// Go home gives the option to go back to home
-		MenuItem goHome = new MenuItem("Ir a la pantalla principal");
+		MenuItem goHome = new MenuItem("Menu Principal");
 		goHome.setOnAction((value) -> {
 			Start goBack = new Start();
 			try {
@@ -71,13 +73,16 @@ public class LinearTransformationGUI extends Application {
 				// TODO: handle exception
 			}
 		});
-		// Help displays how to use this section
-		MenuItem help = new MenuItem("Ayuda");
-		// Add items to the help section
-		preferences.getItems().addAll(goHome, help);
+		// Add items to the change window section
+		changeWindow.getItems().addAll(goHome);
+		
+		//Add items to the help section
+		MenuItem howTo = new MenuItem("¿Como usar?");
+		MenuItem aboutLT = new MenuItem("Acerca de las TL");
+		help.getItems().addAll(howTo, aboutLT);
 
 		// Add menus to the bar
-		menuBar.getMenus().addAll(history, favorites, rotations, preferences);
+		menuBar.getMenus().addAll(history, favorites, rotations, changeWindow, help);
 		root.getChildren().add(menuBar);
 
 		
@@ -87,11 +92,12 @@ public class LinearTransformationGUI extends Application {
 		GridPane gridPane = new GridPane();
 		
 		//In this part you can modify or create the lt
-		Label transformationLbl = new Label("Transformaciï¿½n");
+		Label transformationLbl = new Label("Transformación");
 		GridPane.setConstraints(transformationLbl, 0, 0);
 
-		//The purpose of this text area is to introduce the equations of the lt per line
+		//The purpose of this text area is to show the equations of the lt per line
 		TextArea equationTA = new TextArea();
+		equationTA.setDisable(true);
 		equationTA.setPrefHeight(TEXT_AREA_HEIGHT);
 		equationTA.setPrefWidth(TEXT_AREA_WIDTH);
 		GridPane.setConstraints(equationTA, 0, 1);
@@ -164,8 +170,10 @@ public class LinearTransformationGUI extends Application {
 		root.getChildren().add(gridPane);
 
 		// Add all to the stage
-		Scene scene = new Scene(root);
+		Scene scene = new Scene(root, 400, 500);
 		primaryStage.setScene(scene);
+		primaryStage.setHeight(440);
+		primaryStage.setWidth(420);
 		primaryStage.show();
 	}
 
