@@ -70,7 +70,7 @@ public class ComplexNumGUI extends Application {
 		// Menú de regresar al menu principal
 		Menu change = new Menu("Cambiar Pestaña");
 		MenuItem backButton = new MenuItem("Menú Principal");
-		MenuItem infoButton = new MenuItem("Información de numeros complejos");
+		MenuItem infoButton = new MenuItem("Información de números complejos");
 		change.getItems().addAll(backButton, infoButton);
 
 		// Añadir todo al menú
@@ -116,7 +116,6 @@ public class ComplexNumGUI extends Application {
 			try {
 				main.start(stage);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
@@ -126,14 +125,31 @@ public class ComplexNumGUI extends Application {
 			
 			Image infoImg = new Image("\\application\\complexNumberInfo.png");
 			ImageView imgv = new ImageView();
+			MenuBar menuInfo = new MenuBar();
+			Menu opcMenu = new Menu("Opciones");
+			MenuItem backBtn = new MenuItem("Regresar");
+			opcMenu.getItems().add(backBtn);
+			menuInfo.getMenus().addAll(opcMenu);
 			imgv.setImage(infoImg);
-			HBox hBox = new HBox();
-			hBox.getChildren().add(imgv);
+			VBox vBox = new VBox();
+			vBox.getChildren().addAll(menuInfo, imgv);
+			backBtn.setOnAction((event2) -> {
+				ComplexNumGUI main = new ComplexNumGUI();
+				try {
+					main.start(stage);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			});
 			Group newRoot = new Group();
 			Scene scene = new Scene(newRoot);
-			newRoot.getChildren().add(hBox);
+			newRoot.getChildren().addAll(vBox);
+			stage.setResizable(true);
+			stage.centerOnScreen();
+			stage.setHeight(infoImg.getHeight());
+			stage.setWidth(infoImg.getWidth());
 			stage.setScene(scene);
-			stage.show();
+			stage.show();			
 		});
 
 		// Limpiar resultados e historial
