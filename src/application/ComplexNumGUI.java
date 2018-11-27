@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import calculations.ComplexNumber;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,6 +16,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -67,7 +70,8 @@ public class ComplexNumGUI extends Application {
 		// Menú de regresar al menu principal
 		Menu change = new Menu("Cambiar Pestaña");
 		MenuItem backButton = new MenuItem("Menú Principal");
-		change.getItems().addAll(backButton);
+		MenuItem infoButton = new MenuItem("Información de números complejos");
+		change.getItems().addAll(backButton, infoButton);
 
 		// Añadir todo al menú
 		menu.getMenus().addAll(menuLoad, menuBasicOps, menuSpecOps, change);
@@ -106,15 +110,46 @@ public class ComplexNumGUI extends Application {
 		root.getChildren().addAll(menu, mainResults);
 
 		// Eventos
-		// Regresar al menu principal
+		// Regresar al menu principal		
 		backButton.setOnAction((event) -> {
 			Start main = new Start();
 			try {
 				main.start(stage);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		});
+		
+		// Mostrar información
+		infoButton.setOnAction((event) -> {
+			
+			Image infoImg = new Image("\\application\\complexNumberInfo.png");
+			ImageView imgv = new ImageView();
+			MenuBar menuInfo = new MenuBar();
+			Menu opcMenu = new Menu("Opciones");
+			MenuItem backBtn = new MenuItem("Regresar");
+			opcMenu.getItems().add(backBtn);
+			menuInfo.getMenus().addAll(opcMenu);
+			imgv.setImage(infoImg);
+			VBox vBox = new VBox();
+			vBox.getChildren().addAll(menuInfo, imgv);
+			backBtn.setOnAction((event2) -> {
+				ComplexNumGUI main = new ComplexNumGUI();
+				try {
+					main.start(stage);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			});
+			Group newRoot = new Group();
+			Scene scene = new Scene(newRoot);
+			newRoot.getChildren().addAll(vBox);
+			stage.setResizable(true);
+			stage.centerOnScreen();
+			stage.setHeight(infoImg.getHeight());
+			stage.setWidth(infoImg.getWidth());
+			stage.setScene(scene);
+			stage.show();			
 		});
 
 		// Limpiar resultados e historial
