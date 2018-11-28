@@ -24,12 +24,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class ChatClient extends Application {
-	public ResourceBundle rb;
 	static String mensajeEnviado="";
 	DataInputStream dis;
 	DataOutputStream dos;
 	
-	ChatClient(ResourceBundle rb){
+	public ResourceBundle rb;
+	public ChatClient(ResourceBundle rb){
 		this.rb=rb;
 	}
 
