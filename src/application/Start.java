@@ -43,7 +43,7 @@ public class Start extends Application {
 		complexNumBtn.setPrefWidth(280d);
 		complexNumBtn.setPrefHeight(20d);
 		complexNumBtn.setOnAction((event) -> {
-			ComplexNumGUI complexNumGUI = new ComplexNumGUI();
+			ComplexNumGUI complexNumGUI = new ComplexNumGUI(rb);
 			try {
 				complexNumGUI.start(stage);
 			} catch (Exception e) {
@@ -54,7 +54,7 @@ public class Start extends Application {
 		vectorsBtn.setPrefWidth(280d);
 		vectorsBtn.setPrefHeight(20d);
 		vectorsBtn.setOnAction((event) -> {
-			VectorsGUI vectorsGUI = new VectorsGUI();
+			VectorsGUI vectorsGUI = new VectorsGUI(rb);
 			try {
 				vectorsGUI.start(stage);
 			} catch (Exception e) {
@@ -76,7 +76,7 @@ public class Start extends Application {
 		ltBtn.setPrefWidth(280d);
 		ltBtn.setPrefHeight(20d);
 		ltBtn.setOnAction((event) -> {
-			LinearTransformationGUI linearTransformGUI = new LinearTransformationGUI();
+			LinearTransformationGUI linearTransformGUI = new LinearTransformationGUI(rb);
 			try {
 				linearTransformGUI.start(stage);
 			} catch (Exception e) {
