@@ -12,7 +12,7 @@ public class Start extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		VBox main = new VBox();
-		Button complexNumBtn = new Button("N�meros Complejos");
+		Button complexNumBtn = new Button("Números Complejos");
 		complexNumBtn.setPrefWidth(280d);
 		complexNumBtn.setPrefHeight(20d);
 		complexNumBtn.setOnAction((event) -> {
@@ -60,15 +60,26 @@ public class Start extends Application {
 				e.printStackTrace();
 			}
 		});
+		Button chatBtn = new Button("Chat de tutorías");
+		chatBtn.setPrefWidth(280d);
+		chatBtn.setPrefHeight(20d);
+		chatBtn.setOnAction((event) -> {
+			ChatClient chat=new ChatClient();
+			try {
+				chat.start(stage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 
 		main.setSpacing(5d);
 		main.setPadding(new Insets(10, 0, 0, 10));
-		main.getChildren().addAll(complexNumBtn, vectorsBtn, matrixBtn, ltBtn);
+		main.getChildren().addAll(complexNumBtn, vectorsBtn, matrixBtn, ltBtn,chatBtn);
 
 		Scene scene = new Scene(main, 300, 150);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setWidth(305);
-		stage.setHeight(165);
+		stage.setHeight(200);
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.centerOnScreen();
