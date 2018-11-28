@@ -106,7 +106,7 @@ public class Start extends Application {
 		Scene scene = new Scene(main, 300, 150);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setWidth(305);
-		stage.setHeight(200);
+		stage.setHeight(250);
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.centerOnScreen();
