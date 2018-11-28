@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -25,6 +27,11 @@ public class ChatClient extends Application {
 	static String mensajeEnviado="";
 	DataInputStream dis;
 	DataOutputStream dos;
+	
+	public ResourceBundle rb;
+	public ChatClient(ResourceBundle rb){
+		this.rb=rb;
+	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -34,8 +41,8 @@ public class ChatClient extends Application {
 		MenuBar menu = new MenuBar();
 
 		// Menu de regresar al menu principal
-		Menu change = new Menu("Cambiar Pestaña");
-		MenuItem backButton = new MenuItem("Menú Principal");
+		Menu change = new Menu(rb.getString("back"));
+		MenuItem backButton = new MenuItem(rb.getString("home"));
 		change.getItems().addAll(backButton);
 
 		// Añadir todo al menu
@@ -48,14 +55,14 @@ public class ChatClient extends Application {
 		// Espacio para el historial de vectores
 		VBox mainTable = new VBox();
 		mainTable.setStyle("-fx-min-height:500px; -fx-min-width:100px; -fx-padding:5px; -fx-padding-top:10px;");
-		Label messages = new Label("Mensajes recientes:");
+		Label messages = new Label(rb.getString("messages"));
 		TextArea textmsgs = new TextArea();
 		textmsgs.setStyle("-fx-min-height:400px");
 		textmsgs.setEditable(false);
-		Label writebox = new Label("Mi mensaje:");
+		Label writebox = new Label(rb.getString("current_message"));
 		TextArea currentMessage = new TextArea();
 		currentMessage.setPrefHeight(100d);
-		Button send=new Button("Enviar");
+		Button send=new Button(rb.getString("send"));
 		mainTable.setPadding(new Insets(10, 0, 0, 10));
 		mainTable.setSpacing(5);
 		mainTable.getChildren().addAll(messages, textmsgs,writebox, currentMessage,send);
@@ -88,7 +95,7 @@ public class ChatClient extends Application {
 		stage.setMaxHeight(768d);
 		stage.setWidth(515);
 		stage.setResizable(false);
-		stage.setTitle("Operaciones vectoriales");
+		stage.setTitle(rb.getString("chat_client_title"));
 		stage.show();
 		stage.centerOnScreen();
 
@@ -98,11 +105,11 @@ public class ChatClient extends Application {
 			send.setOnAction((event)->{
 				mensajeEnviado=currentMessage.getText().trim();
 				currentMessage.setText("");
-				textmsgs.setText(textmsgs.getText().trim()+"\n Yo: "+mensajeEnviado);
+				textmsgs.setText(textmsgs.getText().trim()+"\n"+rb.getString("username")+": "+mensajeEnviado);
 				try {
 					dos.writeUTF(mensajeEnviado);
 				} catch (IOException e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null,rb.getString("service_error"),"Error",JOptionPane.ERROR_MESSAGE);
 				}
 			});
 
@@ -111,18 +118,20 @@ public class ChatClient extends Application {
 			try (Socket socket = new Socket(hostName, port)) {
 				dis = new DataInputStream(socket.getInputStream()); 
 				dos =new DataOutputStream(socket.getOutputStream()); 
+				dos.writeUTF(rb.getLocale().getLanguage()); 
+				dos.writeUTF(rb.getLocale().getCountry());
 				textmsgs.setText(dis.readUTF());
-				textmsgs.setText(textmsgs.getText()+"\n Para salir envía: fin");
-				while(!mensajeEnviado.equals("bye")){
+				textmsgs.setText(textmsgs.getText()+"\n"+dis.readUTF());
+				while(!mensajeEnviado.equals(rb.getString("confirmation"))){
 					String mensajeServidor = dis.readUTF();
 					textmsgs.setText(textmsgs.getText().trim()+"\n Tutor: "+mensajeServidor);
 				}
 				socket.close();
-				System.out.println("Sesión terminada con éxito!");
+				textmsgs.setText(textmsgs.getText().trim()+ "\n"+rb.getString("session_ended"));
 			}catch (UnknownHostException e1) {
-				JOptionPane.showMessageDialog(null, "El servicio se encuentra inactivo.","Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,rb.getString("service_error"),"Error",JOptionPane.ERROR_MESSAGE);
 			} catch (IOException e1) {
-				JOptionPane.showMessageDialog(null, "El servicio se encuentra inactivo.","Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,rb.getString("service_error"),"Error",JOptionPane.ERROR_MESSAGE);
 			}
 		}).start();
 

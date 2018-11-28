@@ -22,7 +22,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class VectorsGUI extends Application {
-
+	public ResourceBundle rb;
+	public VectorsGUI(ResourceBundle rb){
+		this.rb=rb;
+	}
 	public static LinkedList<Vector> history = new LinkedList<>();
 	public static LinkedList<Vector> answerVector = new LinkedList<>();
 	static int VectorID = 0;
@@ -40,35 +43,35 @@ public class VectorsGUI extends Application {
 		MenuItem randomVector = new MenuItem("Vector aleatorio");
 		menuLoad.getItems().addAll(addVector, randomVector);
 
-		// Menu de operaciones básicas
-		Menu menuBasicOps = new Menu("Operaciones básicas");
+		// Menu de operaciones bÃ¡sicas
+		Menu menuBasicOps = new Menu("Operaciones bÃ¡sicas");
 		MenuItem suma = new MenuItem("Suma de vectores");
 		MenuItem resta = new MenuItem("Resta de vectores");
-		MenuItem multEsc = new MenuItem("Multiplicación por escalar");
-		MenuItem multiplyElements = new MenuItem("Multiplicación de vectores");
+		MenuItem multEsc = new MenuItem("MultiplicaciÃ³n por escalar");
+		MenuItem multiplyElements = new MenuItem("MultiplicaciÃ³n de vectores");
 		menuBasicOps.getItems().addAll(suma, resta, multEsc, multiplyElements);
 
-		// Menú de operaciones especiales
+		// MenÃº de operaciones especiales
 		Menu menuSpecOps = new Menu("Operaciones especiales");
 		MenuItem magnitud = new MenuItem("Magnitud de un vector");
 		MenuItem toUnitary = new MenuItem("Convertir vector a unitario");
 		MenuItem prodPunto = new MenuItem("Producto punto de vectores");
 		MenuItem prodCruz = new MenuItem("Producto cruz de vectores");
-		MenuItem angulo = new MenuItem("Ángulo entre vectores");
-		MenuItem proyeccion = new MenuItem("Proyección de vectores");
-		MenuItem gramSch = new MenuItem("Método Gram-Schmidt");
-		MenuItem areaPar = new MenuItem("Área de paralelogramo");
+		MenuItem angulo = new MenuItem("Ãngulo entre vectores");
+		MenuItem proyeccion = new MenuItem("ProyecciÃ³n de vectores");
+		MenuItem gramSch = new MenuItem("MÃ©todo Gram-Schmidt");
+		MenuItem areaPar = new MenuItem("Ãrea de paralelogramo");
 		menuSpecOps.getItems().addAll(magnitud, toUnitary, prodPunto, prodCruz, angulo, proyeccion, gramSch, areaPar);
 
 		// Menu de regresar al menu principal
-		Menu change = new Menu("Cambiar Pestaña");
-		MenuItem backButton = new MenuItem("Menú Principal");
+		Menu change = new Menu("Cambiar PestaÃ±a");
+		MenuItem backButton = new MenuItem("MenÃº Principal");
 		change.getItems().addAll(backButton);
 
-		// Añadir todo al menu
+		// AÃ±adir todo al menu
 		menu.getMenus().addAll(menuLoad, menuBasicOps, menuSpecOps, change);
 
-		// Creación de la ventana raíz y resultados
+		// CreaciÃ³n de la ventana raÃ­z y resultados
 		VBox root = new VBox();
 		FlowPane mainResults = new FlowPane();
 
@@ -95,7 +98,7 @@ public class VectorsGUI extends Application {
 		results.getChildren().addAll(resl1, resTxtArea);
 		results.setSpacing(5);
 
-		// Añadir historial y resultados a la pantalla
+		// AÃ±adir historial y resultados a la pantalla
 		mainResults.setPadding(new Insets(10, 0, 0, 10));
 		mainResults.getChildren().addAll(mainTable, results);
 		root.setSpacing(5d);
@@ -123,13 +126,13 @@ public class VectorsGUI extends Application {
 			}
 		});
 
-		// Añadir un vector
+		// AÃ±adir un vector
 		addVector.setOnAction((event) -> {
 			if (!(VectorControl.addVector(history, vectorHistory))) {
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error en la inserción");
+				alert.setTitle("Error en la inserciÃ³n");
 				alert.setHeaderText("Datos incorrectos");
-				alert.setContentText("Vuelva a intentar e ingrese números sin errores.");
+				alert.setContentText("Vuelva a intentar e ingrese nÃºmeros sin errores.");
 				alert.showAndWait();
 				return;
 			}
@@ -137,13 +140,13 @@ public class VectorsGUI extends Application {
 			VectorControl.updateHistory(history, vectorHistory);
 		});
 
-		// Añadir un vector aleatorio
+		// AÃ±adir un vector aleatorio
 		randomVector.setOnAction((event) -> {
 			if (!(VectorControl.random(history))) {
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error en la inserción");
+				alert.setTitle("Error en la inserciÃ³n");
 				alert.setHeaderText("Datos incorrectos");
-				alert.setContentText("Vuelva a intentar e ingrese números sin errores.");
+				alert.setContentText("Vuelva a intentar e ingrese nÃºmeros sin errores.");
 				alert.showAndWait();
 				return;
 			}
@@ -151,21 +154,21 @@ public class VectorsGUI extends Application {
 			VectorControl.updateHistory(history, vectorHistory);
 		});
 
-		// Operaciones básicas
+		// Operaciones bÃ¡sicas
 		// Suma
 		suma.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector A por sumar"));
-				int j = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector B por sumar"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A por sumar"));
+				int j = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector B por sumar"));
 				Vector A = history.get(i);
 				Vector B = history.get(j);
 				prepareAnswerField(resTxtArea);
 				answerVector.add(VectorControl.sumaVector(A, B));
 				if (answerVector.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -177,17 +180,17 @@ public class VectorsGUI extends Application {
 		// Resta
 		resta.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector A por restar"));
-				int j = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector B por restar"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A por restar"));
+				int j = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector B por restar"));
 				Vector A = history.get(i);
 				Vector B = history.get(j);
 				prepareAnswerField(resTxtArea);
 				answerVector.add(VectorControl.restaVector(A, B));
 				if (answerVector.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -196,13 +199,13 @@ public class VectorsGUI extends Application {
 			}
 		});
 
-		// Multiplicación por escalar
+		// MultiplicaciÃ³n por escalar
 
 		multEsc.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector A por restar"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A por restar"));
 				double j = Double.parseDouble(JOptionPane
-						.showInputDialog("Ingrese el número escalar por el cual será multiplicado el vector A"));
+						.showInputDialog("Ingrese el nÃºmero escalar por el cual serÃ¡ multiplicado el vector A"));
 				Vector A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				try {
@@ -211,9 +214,9 @@ public class VectorsGUI extends Application {
 				}
 				if (answerVector.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -222,12 +225,12 @@ public class VectorsGUI extends Application {
 			}
 		});
 
-		// Multiplicación de vectores
+		// MultiplicaciÃ³n de vectores
 
 		multiplyElements.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector A por multiplicar"));
-				int j = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector B por multiplicar"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A por multiplicar"));
+				int j = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector B por multiplicar"));
 				Vector A = history.get(i);
 				Vector B = history.get(j);
 				prepareAnswerField(resTxtArea);
@@ -237,9 +240,9 @@ public class VectorsGUI extends Application {
 				}
 				if (answerVector.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -254,7 +257,7 @@ public class VectorsGUI extends Application {
 		magnitud.setOnAction((event) -> {
 			try {
 				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el número del vector A para obtener su magnitud"));
+						JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A para obtener su magnitud"));
 				Vector A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				double x = 0;
@@ -265,9 +268,9 @@ public class VectorsGUI extends Application {
 				}
 				if (x == 0) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un vector para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos un vector para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -281,7 +284,7 @@ public class VectorsGUI extends Application {
 		toUnitary.setOnAction((event) -> {
 			try {
 				int i = Integer
-						.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector A a convertir a unitario"));
+						.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A a convertir a unitario"));
 				Vector A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				try {
@@ -290,9 +293,9 @@ public class VectorsGUI extends Application {
 				}
 				if (answerVector.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un vector para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos un vector para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -306,9 +309,9 @@ public class VectorsGUI extends Application {
 		prodPunto.setOnAction((event) -> {
 			try {
 				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el número del vector A para obtener su producto punto"));
+						JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A para obtener su producto punto"));
 				int j = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el número del vector B para obtener su producto punto"));
+						JOptionPane.showInputDialog("Ingrese el nÃºmero del vector B para obtener su producto punto"));
 				Vector A = history.get(i);
 				Vector B = history.get(j);
 				prepareAnswerField(resTxtArea);
@@ -320,9 +323,9 @@ public class VectorsGUI extends Application {
 				}
 				if (x == 0) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -336,9 +339,9 @@ public class VectorsGUI extends Application {
 		prodCruz.setOnAction((event) -> {
 			try {
 				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el número del vector A para obtener su producto cruz"));
+						JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A para obtener su producto cruz"));
 				int j = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el número del vector B para obtener su producto cruz"));
+						JOptionPane.showInputDialog("Ingrese el nÃºmero del vector B para obtener su producto cruz"));
 				Vector A = history.get(i);
 				Vector B = history.get(j);
 				prepareAnswerField(resTxtArea);
@@ -348,9 +351,9 @@ public class VectorsGUI extends Application {
 				}
 				if (answerVector.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -359,14 +362,14 @@ public class VectorsGUI extends Application {
 			}
 		});
 
-		// Ángulo entre vectores
+		// Ãngulo entre vectores
 
 		angulo.setOnAction((event) -> {
 			try {
 				int i = Integer
-						.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector A para obtener el ángulo"));
+						.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A para obtener el Ã¡ngulo"));
 				int j = Integer
-						.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector B para obtener el ángulo"));
+						.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector B para obtener el Ã¡ngulo"));
 				Vector A = history.get(i);
 				Vector B = history.get(j);
 				prepareAnswerField(resTxtArea);
@@ -378,9 +381,9 @@ public class VectorsGUI extends Application {
 				}
 				if (x == 0) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -389,14 +392,14 @@ public class VectorsGUI extends Application {
 			}
 		});
 
-		// Proyección
+		// ProyecciÃ³n
 
 		proyeccion.setOnAction((event) -> {
 			try {
 				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el número del vector A para obtener la proyección"));
+						JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A para obtener la proyecciÃ³n"));
 				int j = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el número del vector B para obtener la proyección"));
+						JOptionPane.showInputDialog("Ingrese el nÃºmero del vector B para obtener la proyecciÃ³n"));
 				Vector A = history.get(i);
 				Vector B = history.get(j);
 				prepareAnswerField(resTxtArea);
@@ -406,9 +409,9 @@ public class VectorsGUI extends Application {
 				}
 				if (answerVector.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -422,9 +425,9 @@ public class VectorsGUI extends Application {
 		gramSch.setOnAction((event) -> {
 			try {
 				int i = Integer.parseInt(JOptionPane
-						.showInputDialog("Ingrese el número del vector A para obtener el método Gram-Schmidt"));
+						.showInputDialog("Ingrese el nÃºmero del vector A para obtener el mÃ©todo Gram-Schmidt"));
 				int j = Integer.parseInt(JOptionPane
-						.showInputDialog("Ingrese el número del vector B para obtener el método Gram-Schmidt"));
+						.showInputDialog("Ingrese el nÃºmero del vector B para obtener el mÃ©todo Gram-Schmidt"));
 				Vector A = history.get(i);
 				Vector B = history.get(j);
 				prepareAnswerField(resTxtArea);
@@ -434,9 +437,9 @@ public class VectorsGUI extends Application {
 				}
 				if (answerVector.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos dos vectores para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}
@@ -446,16 +449,16 @@ public class VectorsGUI extends Application {
 			}
 		});
 
-		// Área de paralelogramo formado por 3 vectores
+		// Ãrea de paralelogramo formado por 3 vectores
 
 		areaPar.setOnAction((event) -> {
 			try {
 				int i = Integer
-						.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector A para obtener el área"));
+						.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector A para obtener el Ã¡rea"));
 				int j = Integer
-						.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector B para obtener el área"));
+						.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector B para obtener el Ã¡rea"));
 				int k = Integer
-						.parseInt(JOptionPane.showInputDialog("Ingrese el número del vector C para obtener el área"));
+						.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero del vector C para obtener el Ã¡rea"));
 				Vector A = history.get(i);
 				Vector B = history.get(j);
 				Vector C = history.get(k);
@@ -468,9 +471,9 @@ public class VectorsGUI extends Application {
 				}
 				if (x == 0) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos tres vectores para efectuar la operación.");
+					alert.setTitle("Error en el cÃ¡lculo");
+					alert.setHeaderText("ViolaciÃ³n de propiedades:");
+					alert.setContentText("Debe de haber al menos tres vectores para efectuar la operaciÃ³n.");
 					alert.showAndWait();
 					return;
 				}

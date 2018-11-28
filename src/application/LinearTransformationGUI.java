@@ -19,6 +19,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class LinearTransformationGUI extends Application {
+	public ResourceBundle rb;
+	public LinearTransformationGUI(ResourceBundle rb){
+		this.rb=rb;
+	}
 	private static final double TEXT_AREA_HEIGHT = 120.0, TEXT_AREA_WIDTH = 100.0;
 	private static final double BUTTON_WIDTH = 70.0;
 	private LinearTransformationControl control;
@@ -43,7 +47,7 @@ public class LinearTransformationGUI extends Application {
 		// Generate the lt for some vector rotations
 		Menu rotations = new Menu("Rotaciones");
 		// Change window
-		Menu changeWindow = new Menu("Cambiar Pestaña");
+		Menu changeWindow = new Menu("Cambiar PestaÃ±a");
 		// Help displays how to use this section
 		Menu help = new Menu("Ayuda");
 
@@ -85,7 +89,7 @@ public class LinearTransformationGUI extends Application {
 		changeWindow.getItems().addAll(goHome);
 		
 		//Add items to the help section
-		MenuItem howTo = new MenuItem("¿Como usar?");
+		MenuItem howTo = new MenuItem("Â¿Como usar?");
 		MenuItem aboutLT = new MenuItem("Acerca de las TL");
 		help.getItems().addAll(howTo, aboutLT);
 
@@ -100,7 +104,7 @@ public class LinearTransformationGUI extends Application {
 		GridPane gridPane = new GridPane();
 		
 		//In this part you can modify or create the lt
-		Label transformationLbl = new Label("Transformación");
+		Label transformationLbl = new Label("TransformaciÃ³n");
 		GridPane.setConstraints(transformationLbl, 0, 0);
 
 		//The purpose of this text area is to show the equations of the lt per line
@@ -181,7 +185,7 @@ public class LinearTransformationGUI extends Application {
 							ButtonType.OK);
 					alert.show();
 				} catch (IllegalArgumentException e) {
-					Alert alert = new Alert(AlertType.WARNING, "Transformación lineal no creada",
+					Alert alert = new Alert(AlertType.WARNING, "TransformaciÃ³n lineal no creada",
 							ButtonType.OK);
 					alert.show();
 				}
