@@ -1,6 +1,7 @@
 package application;
 
 import java.util.LinkedList;
+import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
@@ -137,7 +138,7 @@ public class ComplexNumGUI extends Application {
 			VBox vBox = new VBox();
 			vBox.getChildren().addAll(menuInfo, imgv);
 			backBtn.setOnAction((event2) -> {
-				ComplexNumGUI main = new ComplexNumGUI();
+				ComplexNumGUI main = new ComplexNumGUI(rb);
 				try {
 					main.start(stage);
 				} catch (Exception e) {

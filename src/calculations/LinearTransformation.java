@@ -42,8 +42,8 @@ public class LinearTransformation {
 			StringBuilder sb = new StringBuilder();
 
 			for (int i = 0; i < matrix.getRows(); i++) {
+				boolean impresed = false;
 				for (int j = 0; j < matrix.getColumns(); j++) {
-					boolean impresed = false;
 					if (matrix.get(i, j) != 0) {
 						if (impresed && matrix.get(i, j) > 0)
 							sb.append(" + ");
