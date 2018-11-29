@@ -32,9 +32,9 @@ public class Start extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 
-		HBox navbar=new HBox();
-		ComboBox<String> language= new ComboBox<String>();
-		language.getItems().addAll("Español","English");
+		HBox navbar = new HBox();
+		ComboBox<String> language = new ComboBox<String>();
+		language.getItems().addAll("Español", "English");
 		language.setValue(rb.getString("select_cbox"));
 		navbar.getChildren().add(language);
 
@@ -87,7 +87,7 @@ public class Start extends Application {
 		chatBtn.setPrefWidth(280d);
 		chatBtn.setPrefHeight(20d);
 		chatBtn.setOnAction((event) -> {
-			ChatClient chat=new ChatClient(rb);
+			ChatClient chat = new ChatClient(rb);
 			try {
 				chat.start(stage);
 			} catch (Exception e) {
@@ -97,11 +97,11 @@ public class Start extends Application {
 
 		language.setOnAction((event) -> {
 			String resourcesPath = "resources.Bundle";
-			switch(language.getValue().toLowerCase()) {
+			switch (language.getValue().toLowerCase()) {
 			case "español":
 				rb = ResourceBundle.getBundle(resourcesPath, new Locale("es", "mx"));
 				updateValues();
-				System.out.println(rb.getLocale());					
+				System.out.println(rb.getLocale());
 				break;
 			case "english":
 				rb = ResourceBundle.getBundle(resourcesPath, new Locale("en", "us"));
@@ -115,7 +115,7 @@ public class Start extends Application {
 
 		main.setSpacing(5d);
 		main.setPadding(new Insets(10, 0, 0, 10));
-		main.getChildren().addAll(navbar,complexNumBtn, vectorsBtn, matrixBtn, ltBtn,chatBtn);
+		main.getChildren().addAll(navbar, complexNumBtn, vectorsBtn, matrixBtn, ltBtn, chatBtn);
 
 		Scene scene = new Scene(main, 300, 150);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -127,14 +127,12 @@ public class Start extends Application {
 		stage.setTitle("Linear FX");
 		stage.show();
 
-
 	}
-
 
 	public static void main(String[] args) {
 		Locale locale = new Locale("es", "mx");
 		String resourcesPath = "resources.Bundle";
-		rb = ResourceBundle.getBundle(resourcesPath,locale);
+		rb = ResourceBundle.getBundle(resourcesPath, locale);
 		launch(args);
 	}
 

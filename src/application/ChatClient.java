@@ -24,13 +24,14 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class ChatClient extends Application {
-	static String mensajeEnviado="";
+	static String mensajeEnviado = "";
 	DataInputStream dis;
 	DataOutputStream dos;
-	
+
 	public ResourceBundle rb;
-	public ChatClient(ResourceBundle rb){
-		this.rb=rb;
+
+	public ChatClient(ResourceBundle rb) {
+		this.rb = rb;
 	}
 
 	@Override
@@ -62,10 +63,10 @@ public class ChatClient extends Application {
 		Label writebox = new Label(rb.getString("current_message"));
 		TextArea currentMessage = new TextArea();
 		currentMessage.setPrefHeight(100d);
-		Button send=new Button(rb.getString("send"));
+		Button send = new Button(rb.getString("send"));
 		mainTable.setPadding(new Insets(10, 0, 0, 10));
 		mainTable.setSpacing(5);
-		mainTable.getChildren().addAll(messages, textmsgs,writebox, currentMessage,send);
+		mainTable.getChildren().addAll(messages, textmsgs, writebox, currentMessage, send);
 
 		// Añadir historial y resultados a la pantalla
 		mainResults.setPadding(new Insets(10, 0, 0, 10));
@@ -84,8 +85,6 @@ public class ChatClient extends Application {
 			}
 		});
 
-
-
 		// Settings de stage
 		Scene scene = new Scene(root, 1000, 500);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -99,43 +98,42 @@ public class ChatClient extends Application {
 		stage.show();
 		stage.centerOnScreen();
 
-
-		//Comunicación mediante sockets manejada por el segundo hilo
-		new Thread(()->{
-			send.setOnAction((event)->{
-				mensajeEnviado=currentMessage.getText().trim();
+		// Comunicación mediante sockets manejada por el segundo hilo
+		new Thread(() -> {
+			send.setOnAction((event) -> {
+				mensajeEnviado = currentMessage.getText().trim();
 				currentMessage.setText("");
-				textmsgs.setText(textmsgs.getText().trim()+"\n"+rb.getString("username")+": "+mensajeEnviado);
+				textmsgs.setText(textmsgs.getText().trim() + "\n" + rb.getString("username") + ": " + mensajeEnviado);
 				try {
 					dos.writeUTF(mensajeEnviado);
 				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null,rb.getString("service_error"),"Error",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, rb.getString("service_error"), "Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			});
 
 			String hostName = "localhost";
 			int port = 10002;
 			try (Socket socket = new Socket(hostName, port)) {
-				dis = new DataInputStream(socket.getInputStream()); 
-				dos =new DataOutputStream(socket.getOutputStream()); 
-				dos.writeUTF(rb.getLocale().getLanguage()); 
+				dis = new DataInputStream(socket.getInputStream());
+				dos = new DataOutputStream(socket.getOutputStream());
+				dos.writeUTF(rb.getLocale().getLanguage());
 				dos.writeUTF(rb.getLocale().getCountry());
 				textmsgs.setText(dis.readUTF());
-				textmsgs.setText(textmsgs.getText()+"\n"+dis.readUTF());
-				while(!mensajeEnviado.equals(rb.getString("confirmation"))){
+				textmsgs.setText(textmsgs.getText() + "\n" + dis.readUTF());
+				while (!mensajeEnviado.equals(rb.getString("confirmation"))) {
 					String mensajeServidor = dis.readUTF();
-					textmsgs.setText(textmsgs.getText().trim()+"\n Tutor: "+mensajeServidor);
+					textmsgs.setText(textmsgs.getText().trim() + "\n Tutor: " + mensajeServidor);
 				}
 				socket.close();
-				textmsgs.setText(textmsgs.getText().trim()+ "\n"+rb.getString("session_ended"));
-			}catch (UnknownHostException e1) {
-				JOptionPane.showMessageDialog(null,rb.getString("service_error"),"Error",JOptionPane.ERROR_MESSAGE);
+				textmsgs.setText(textmsgs.getText().trim() + "\n" + rb.getString("session_ended"));
+			} catch (UnknownHostException e1) {
+				JOptionPane.showMessageDialog(null, rb.getString("service_error"), "Error", JOptionPane.ERROR_MESSAGE);
 			} catch (IOException e1) {
-				JOptionPane.showMessageDialog(null,rb.getString("service_error"),"Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, rb.getString("service_error"), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}).start();
 
 	}
-
 
 }
