@@ -285,6 +285,7 @@ public class LinearTransformationGUI extends Application {
 
 		// Add all to the stage
 		Scene scene = new Scene(root, 400, 500);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.setHeight(440);
 		primaryStage.setWidth(420);
