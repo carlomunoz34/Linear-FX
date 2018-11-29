@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8"?>
 <?language JavaScript?>
 <?import javafx.geometry.Insets?>
@@ -33,4 +34,41 @@
 	
 	
 	<WebView fx:id="viewer"/>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<?language JavaScript?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.*?>
+<?import javafx.scene.web.WebView?>
+
+<VBox fx:controller="application.WebSiteFXMLController" xmlns="http://javafx.com/javafx/2.2" xmlns:fx="http://javafx.com/fxml/1" fx:id="container">
+	<HBox fx:id="menuContainer" prefWidth="500">
+	<children>
+	<Label fx:id="URLlabel" prefWidth="80" text="URL"/>
+	<TextField fx:id="URLField" prefWidth="200" promptText="Ingrese la URL"/>
+	<Button fx:id="GoButton" prefWidth="100" text="Cargar" onMouseClicked="#loadPage">
+		<VBox.margin>
+		<Insets left="10.0" bottom="0.0" right="10.0" top="0.0"/>
+		</VBox.margin>
+	</Button>
+	<Button fx:id="BackButton" prefWidth="100" text="Volver" onMouseClicked="#backToSource">
+		<VBox.margin>
+		<Insets left="10.0" bottom="0.0" right="10.0" top="0.0"/>
+		</VBox.margin>
+	</Button>
+	</children>
+	
+	<padding>
+	<Insets left="20" bottom="20" right="20" top="20"/>
+	</padding>
+	
+	</HBox>
+	
+	
+	<WebView fx:id="viewer"/>
+>>>>>>> Stashed changes
 </VBox>
