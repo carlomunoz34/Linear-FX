@@ -47,34 +47,34 @@ public class ComplexNumGUI extends Application {
 		menuLoad.getItems().addAll(addComplexNumber, randomComplexNumber);
 
 		// Menu de operaciones básicas
-		Menu menuBasicOps = new Menu("Operaciones básicas");
-		MenuItem addElements = new MenuItem("Suma de números complejos");
-		MenuItem subtractElement = new MenuItem("Resta de números complejos");
-		MenuItem multiplyElements = new MenuItem("Multiplicación de números complejos");
-		MenuItem divideElements = new MenuItem("División de números complejos");
+		Menu menuBasicOps = new Menu(rb.getString("cn_menu_basic_ops"));
+		MenuItem addElements = new MenuItem(rb.getString("cn_add"));
+		MenuItem subtractElement = new MenuItem(rb.getString("cn_sub"));
+		MenuItem multiplyElements = new MenuItem(rb.getString("cn_mult"));
+		MenuItem divideElements = new MenuItem(rb.getString("cn_div"));
 		menuBasicOps.getItems().addAll(addElements, subtractElement, multiplyElements, divideElements);
 
 		// Menú de operaciones especiales
-		Menu menuSpecOps = new Menu("Operaciones especiales");
-		MenuItem conjugateElement = new MenuItem("Conjugar número complejo");
-		MenuItem magnitudeElement = new MenuItem("Magnitud de un número complejo");
-		MenuItem squareElement = new MenuItem("Cuadrado de un número complejo");
-		MenuItem expElement = new MenuItem("Exponencial de un número complejo");
-		MenuItem powElement = new MenuItem("Número complejo elevado a X");
-		MenuItem sinElement = new MenuItem("Seno de un número complejo");
-		MenuItem cosElement = new MenuItem("Coseno de un número complejo");
-		MenuItem tanElement = new MenuItem("Tangente de un número complejo");
-		MenuItem cotElement = new MenuItem("Cotangente de un número complejo");
-		MenuItem secElement = new MenuItem("Secante de un número complejo");
-		MenuItem cosecElement = new MenuItem("Cosecante de un número complejo");
-		MenuItem invElement = new MenuItem("Inverso de un número complejo");
+		Menu menuSpecOps = new Menu(rb.getString("cn_menu_spec_ops"));
+		MenuItem conjugateElement = new MenuItem(rb.getString("cn_conj"));
+		MenuItem magnitudeElement = new MenuItem(rb.getString("cn_mag"));
+		MenuItem squareElement = new MenuItem(rb.getString("cn_sqr"));
+		MenuItem expElement = new MenuItem(rb.getString("cn_exp"));
+		MenuItem powElement = new MenuItem(rb.getString("cn_pow"));
+		MenuItem sinElement = new MenuItem(rb.getString("cn_sin"));
+		MenuItem cosElement = new MenuItem(rb.getString("cn_cos"));
+		MenuItem tanElement = new MenuItem(rb.getString("cn_tan"));
+		MenuItem cotElement = new MenuItem(rb.getString("cn_cot"));
+		MenuItem secElement = new MenuItem(rb.getString("cn_sec"));
+		MenuItem cosecElement = new MenuItem(rb.getString("cn_cosec"));
+		MenuItem invElement = new MenuItem(rb.getString("cn_inv"));
 		menuSpecOps.getItems().addAll(conjugateElement, magnitudeElement, squareElement, expElement, powElement,
 				sinElement, cosElement, tanElement, cotElement, secElement, cosecElement, invElement);
 
 		// Menú de regresar al menu principal
-		Menu change = new Menu("Cambiar Pestaña");
-		MenuItem backButton = new MenuItem("Menú Principal");
-		MenuItem infoButton = new MenuItem("Información de números complejos");
+		Menu change = new Menu(rb.getString("cn_change_tab"));
+		MenuItem backButton = new MenuItem(rb.getString("cn_back"));
+		MenuItem infoButton = new MenuItem(rb.getString("cn_info"));
 		change.getItems().addAll(backButton, infoButton);
 
 		// Añadir todo al menú
@@ -87,11 +87,11 @@ public class ComplexNumGUI extends Application {
 		// Espacio para el historial de números complejos
 		VBox mainTable = new VBox();
 		mainTable.setStyle("-fx-min-height:300px; -fx-min-width:100px; -fx-padding:5px; -fx-padding-top:10px;");
-		Label historyL = new Label("Números complejos utilizables:");
+		Label historyL = new Label(rb.getString("cn_history"));
 		TextArea complexNumberHistory = new TextArea();
 		complexNumberHistory.setStyle("-fx-min-height:20px");
 		HBox clear = new HBox();
-		Button reset = new Button("Limpiar");
+		Button reset = new Button(rb.getString("cn_reset"));
 		clear.setSpacing(5);
 		clear.setPadding(new Insets(10, 0, 0, 10));
 		clear.getChildren().addAll(reset);
@@ -102,7 +102,7 @@ public class ComplexNumGUI extends Application {
 		// Espacio para los resultados
 		VBox results = new VBox();
 		results.setStyle("-fx-min-height:50px; -fx-min-width:50px; -fx-padding:5px;");
-		Label resl1 = new Label("Resultado:");
+		Label resl1 = new Label(rb.getString("cn_result"));
 		TextArea resTxtArea = new TextArea();
 		results.getChildren().addAll(resl1, resTxtArea);
 		results.setSpacing(5);
@@ -130,8 +130,8 @@ public class ComplexNumGUI extends Application {
 			Image infoImg = new Image("\\application\\complexNumberInfo.png");
 			ImageView imgv = new ImageView();
 			MenuBar menuInfo = new MenuBar();
-			Menu opcMenu = new Menu("Opciones");
-			MenuItem backBtn = new MenuItem("Regresar");
+			Menu opcMenu = new Menu(rb.getString("cn_opc_menu"));
+			MenuItem backBtn = new MenuItem(rb.getString("cn_info_back"));
 			opcMenu.getItems().add(backBtn);
 			menuInfo.getMenus().addAll(opcMenu);
 			imgv.setImage(infoImg);
@@ -171,9 +171,9 @@ public class ComplexNumGUI extends Application {
 		addComplexNumber.setOnAction((event) -> {
 			if (!(ComplexNumber.addComplexNumber(history, complexNumberHistory))) {
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error en la inserción");
-				alert.setHeaderText("Datos incorrectos");
-				alert.setContentText("Vuelva a intentar e ingrese números sin errores.");
+				alert.setTitle(rb.getString("cn_alert_ins_err"));
+				alert.setHeaderText(rb.getString("cn_alert_wrg_data"));
+				alert.setContentText(rb.getString("cn_alert_try"));
 				alert.showAndWait();
 				return;
 			}
@@ -185,9 +185,9 @@ public class ComplexNumGUI extends Application {
 		randomComplexNumber.setOnAction((event) -> {
 			if (!(ComplexNumber.random(history))) {
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error en la inserción");
-				alert.setHeaderText("Datos incorrectos");
-				alert.setContentText("Vuelva a intentar e ingrese números sin errores.");
+				alert.setTitle(rb.getString("cn_alert_ins_err"));
+				alert.setHeaderText(rb.getString("cn_alert_wrg_data"));
+				alert.setContentText(rb.getString("cn_alert_try"));
 				alert.showAndWait();
 				return;
 			}
@@ -199,17 +199,17 @@ public class ComplexNumGUI extends Application {
 		// Suma
 		addElements.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del número complejo A por sumar"));
-				int j = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del número complejo B por sumar"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_addA_msg")));
+				int j = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_addB_msg")));
 				ComplexNumber A = history.get(i);
 				ComplexNumber B = history.get(j);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.add(A, B));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos números complejos para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_two_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -221,17 +221,17 @@ public class ComplexNumGUI extends Application {
 		// Resta
 		subtractElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del vector A por restar"));
-				int j = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del vector B por restar"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_subA_msg")));
+				int j = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_subB_msg")));
 				ComplexNumber A = history.get(i);
 				ComplexNumber B = history.get(j);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.subtract(A, B));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos números complejos para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_two_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -243,19 +243,17 @@ public class ComplexNumGUI extends Application {
 		// Multiplicación de números complejos
 		multiplyElements.setOnAction((event) -> {
 			try {
-				int i = Integer
-						.parseInt(JOptionPane.showInputDialog("Ingrese el número del ID complejo A por multiplicar"));
-				int j = Integer
-						.parseInt(JOptionPane.showInputDialog("Ingrese el número del ID complejo B por multiplicar"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_multA_msg")));
+				int j = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_multB_msg")));
 				ComplexNumber A = history.get(i);
 				ComplexNumber B = history.get(j);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.multiply(A, B));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos número complejos para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_two_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -267,19 +265,17 @@ public class ComplexNumGUI extends Application {
 		// División de números complejos
 		divideElements.setOnAction((event) -> {
 			try {
-				int i = Integer
-						.parseInt(JOptionPane.showInputDialog("Ingrese el ID del número complejo A por dividir"));
-				int j = Integer
-						.parseInt(JOptionPane.showInputDialog("Ingrese el ID del número complejo B por dividir"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_divA_msg")));
+				int j = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_divB_msg")));
 				ComplexNumber A = history.get(i);
 				ComplexNumber B = history.get(j);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.divide(A, B));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos dos número complejos para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_two_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -292,16 +288,15 @@ public class ComplexNumGUI extends Application {
 		// Conjugado
 		conjugateElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el ID del número complejo para obtener su conjugado"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_conj_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(A.conjugate());
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -313,16 +308,15 @@ public class ComplexNumGUI extends Application {
 		// Magnitud
 		magnitudeElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el ID del número complejo para obtener su magnitud"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_magn_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(new ComplexNumber(A.mod(), 0));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -334,16 +328,15 @@ public class ComplexNumGUI extends Application {
 		// Cuadrado
 		squareElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el ID del número complejo para obtener su cuadrado"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_sqr_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(A.square());
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -355,16 +348,15 @@ public class ComplexNumGUI extends Application {
 		// Exponencial
 		expElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(JOptionPane
-						.showInputDialog("Ingrese el ID del número complejo para obtener el exponencial e^(a+bi)"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_exp_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.exp(A));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -376,16 +368,16 @@ public class ComplexNumGUI extends Application {
 		// Potencia
 		powElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del número complejo"));
-				int power = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la potencia a la cual elevar"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_pow_msg1")));
+				int power = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_pow_msg2")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.pow(A, power));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -397,16 +389,15 @@ public class ComplexNumGUI extends Application {
 		// Seno
 		sinElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el ID del número complejo al cual calcular el seno"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_sin_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.sin(A));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -418,16 +409,15 @@ public class ComplexNumGUI extends Application {
 		// Coseno
 		cosElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el ID del número complejo al cual calcular el coseno"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_cos_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.cos(A));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -439,16 +429,15 @@ public class ComplexNumGUI extends Application {
 		// Tangente
 		tanElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el ID del número complejo al cual calcular la tangente"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_tan_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.tan(A));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -460,16 +449,15 @@ public class ComplexNumGUI extends Application {
 		// Cotangente
 		cotElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(JOptionPane
-						.showInputDialog("Ingrese el ID del número complejo al cual calcular la cotangente"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_cot_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.cot(A));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -481,16 +469,15 @@ public class ComplexNumGUI extends Application {
 		// Secante
 		secElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el ID del número complejo al cual calcular la secante"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_sec_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.sec(A));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -502,16 +489,15 @@ public class ComplexNumGUI extends Application {
 		// Cosecante
 		cosecElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(JOptionPane
-						.showInputDialog("Ingrese el ID del número complejo al cual calcular la cosecante"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_cosec_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(ComplexNumber.cot(A));
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -523,16 +509,15 @@ public class ComplexNumGUI extends Application {
 		// Inverso
 		invElement.setOnAction((event) -> {
 			try {
-				int i = Integer.parseInt(
-						JOptionPane.showInputDialog("Ingrese el ID del número complejo al cual calcular su inverso"));
+				int i = Integer.parseInt(JOptionPane.showInputDialog(rb.getString("cn_inv_msg")));
 				ComplexNumber A = history.get(i);
 				prepareAnswerField(resTxtArea);
 				answerComplexNumber.add(A.inverse());
 				if (answerComplexNumber.getLast() == null) {
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error en el cálculo");
-					alert.setHeaderText("Violación de propiedades:");
-					alert.setContentText("Debe de haber al menos un número complejo para efectuar la operación.");
+					alert.setTitle(rb.getString("cn_calc_err"));
+					alert.setHeaderText(rb.getString("cn_prop_vio_err"));
+					alert.setContentText(rb.getString("cn_one_num_alert"));
 					alert.showAndWait();
 					return;
 				}
@@ -547,7 +532,7 @@ public class ComplexNumGUI extends Application {
 		stage.setScene(scene);
 		stage.setHeight(600);
 		stage.setWidth(515);
-		stage.setTitle("Números Complejos");
+		stage.setTitle(rb.getString("cn_title"));
 		stage.show();
 		stage.centerOnScreen();
 
