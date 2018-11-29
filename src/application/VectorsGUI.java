@@ -83,10 +83,10 @@ public class VectorsGUI extends Application {
 
 		// Espacio para el historial de vectores
 		VBox mainTable = new VBox();
-		mainTable.setStyle("-fx-min-height:500px; -fx-min-width:100px; -fx-padding:5px; -fx-padding-top:10px;");
+		mainTable.setStyle("-fx-min-height:10px; -fx-min-width:10px; -fx-padding:5px; -fx-padding-top:10px;");
 		Label historyL = new Label(rb.getString("v_usablev"));//vectores utilizables
 		TextArea vectorHistory = new TextArea();
-		vectorHistory.setStyle("-fx-min-height:400px");
+		vectorHistory.setStyle("-fx-min-height:200px");
 		HBox clear = new HBox();
 		Button reset = new Button(rb.getString("v_clean"));//limpiar
 		clear.setSpacing(5);
@@ -98,7 +98,7 @@ public class VectorsGUI extends Application {
 
 		// Espacio para los resultados
 		VBox results = new VBox();
-		results.setStyle("-fx-min-height:500px; -fx-min-width:100px; -fx-padding:5px;");
+		results.setStyle("-fx-min-height:100px; -fx-min-width:100px; -fx-padding:5px;");
 		Label resl1 = new Label(rb.getString("v_result"));//resultado
 		TextArea resTxtArea = new TextArea();
 		results.getChildren().addAll(resl1, resTxtArea);
@@ -107,7 +107,7 @@ public class VectorsGUI extends Application {
 		// AÃ±adir historial y resultados a la pantalla
 		mainResults.setPadding(new Insets(10, 0, 0, 10));
 		mainResults.getChildren().addAll(mainTable, results);
-		root.setSpacing(5d);
+//		root.setSpacing(5d);
 		root.getChildren().addAll(menu, mainResults);
 
 		// Eventos
@@ -525,7 +525,7 @@ public class VectorsGUI extends Application {
 		Scene scene = new Scene(root, 1000, 500);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
-		stage.setHeight(800);
+		stage.setHeight(600);
 		stage.setWidth(515);
 		stage.setResizable(false);
 		stage.setTitle(rb.getString("v_vecops"));//operaciones vectoriales

@@ -205,7 +205,10 @@ public class LinearTransformationGUI extends Application {
 			}
 		});
 
-		modifyBtn.setOnAction(event -> equationTA.setText(control.setCurrentLT(matrixTA.getText())));
+		modifyBtn.setOnAction(event -> {
+				if(control.getCurrentLT() != null)
+					equationTA.setText(control.setCurrentLT(matrixTA.getText()));
+				});
 
 		convertBtn.setOnAction(event -> {
 			try {
@@ -222,6 +225,8 @@ public class LinearTransformationGUI extends Application {
 		});
 
 		saveBtn.setOnAction(event -> {
+			if(control.getCurrentLT() == null) 
+				return;
 			try {
 				if (control.getFavorites().size() == 0) {
 					favorites.getItems().clear();
