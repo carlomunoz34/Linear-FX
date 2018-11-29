@@ -104,8 +104,12 @@ public class LinearTransformationControl {
 	}
 
 	public void addFavorites() throws IllegalArgumentException, IOException {
+		try {
 		if (currentLT.getName().equals(""))
 			throw new IllegalArgumentException();
+		} catch (NullPointerException e){
+			return;
+		}
 
 		favorites.add(currentLT);
 		ByteBuffer byteBuffer = ByteBuffer.allocate(ALLOCATE);

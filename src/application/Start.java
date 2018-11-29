@@ -34,7 +34,7 @@ public class Start extends Application {
 
 		HBox navbar=new HBox();
 		ComboBox<String> language= new ComboBox<String>();
-		language.getItems().addAll("EspaÃ±ol","English");
+		language.getItems().addAll("Español","English");
 		language.setValue(rb.getString("select_cbox"));
 		navbar.getChildren().add(language);
 
