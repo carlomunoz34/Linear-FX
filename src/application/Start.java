@@ -98,7 +98,7 @@ public class Start extends Application {
 		language.setOnAction((event) -> {
 			String resourcesPath = "resources.Bundle";
 			switch(language.getValue().toLowerCase()) {
-			case "espaÃ±ol":
+			case "español":
 				rb = ResourceBundle.getBundle(resourcesPath, new Locale("es", "mx"));
 				updateValues();
 				System.out.println(rb.getLocale());					
