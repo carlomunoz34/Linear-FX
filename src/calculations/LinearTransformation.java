@@ -17,9 +17,8 @@ public class LinearTransformation {
 	 * 
 	 * @param matrix is the matrix of the linear transformations
 	 */
-	public LinearTransformation(Matrix matrix, String name) {
+	public LinearTransformation(Matrix matrix) {
 		this.matrix = matrix;
-		this.name = name;
 		equation = "";
 	}
 
@@ -44,17 +43,22 @@ public class LinearTransformation {
 
 			for (int i = 0; i < matrix.getRows(); i++) {
 				for (int j = 0; j < matrix.getColumns(); j++) {
+					boolean impresed = false;
 					if (matrix.get(i, j) != 0) {
-						if (j != 0 && matrix.get(i, j) > 0)
+						if (impresed && matrix.get(i, j) > 0)
 							sb.append(" + ");
 						else if (matrix.get(i, j) < 0)
 							sb.append(" - ");
 
-						if (Math.abs(matrix.get(i, j)) > 1)
+						if (Math.abs(matrix.get(i, j)) > 1) {
 							sb.append(String.format("%.2f%c", Math.abs(matrix.get(i, j)),
 									(char) (('x' - 'a' + j) % ('z' - 'a' + 1) + 'a')));
-						else
+							impresed = true;
+						}
+						else {
 							sb.append(String.format("%c", (char) (('x' - 'a' + j) % ('z' - 'a' + 1) + 'a')));
+							impresed = true;
+						}
 					}
 				}
 
@@ -71,6 +75,7 @@ public class LinearTransformation {
 	}
 
 	public void setMatrix(Matrix matrix) {
+		equation = "";
 		this.matrix = matrix;
 	}
 
@@ -122,13 +127,10 @@ public class LinearTransformation {
 
 			double[][] result = new double[this.rows][other.columns];
 
-			for (int i = 0; i < rows; i++) {
-				for (int j = 0; j < other.columns; j++) {
-					for (int k = 0; k < columns; k++) {
+			for (int i = 0; i < rows; i++)
+				for (int j = 0; j < other.columns; j++)
+					for (int k = 0; k < columns; k++)
 						result[i][j] += this.matrix[i][k] * other.matrix[k][j];
-					}
-				}
-			}
 
 			return new Matrix(result);
 		}
@@ -139,6 +141,20 @@ public class LinearTransformation {
 					System.out.print(matrix[i][j] + " ");
 				System.out.println();
 			}
+		}
+		
+		@Override
+		public String toString() {
+			StringBuilder sc = new StringBuilder();
+			for(int i = 0; i < matrix.length; i++) {
+				for(int j = 0; j < matrix[i].length; j++) {
+					sc.append(matrix[i][j]);
+					sc.append(" ");
+				}
+				sc.append("\n");
+			}
+			
+			return sc.toString();
 		}
 
 	}
