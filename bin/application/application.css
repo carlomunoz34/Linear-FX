@@ -1,0 +1,55 @@
+Button{
+	-fx-color:orange;
+	-fx-border-color:orange;
+	-fx-text-fill: white;
+	-fx-font-weight:400;
+	-fx-border-radius:5px;
+}
+
+MenuBar{
+	-fx-color:white;
+	-fx-background-color: orange;
+}
+
+MenuBar *{
+	-fx-fill: white;
+	-fx-background-fills: transparent;
+	-fx-background-color: inherit;
+}
+
+MenuBar * :hover,Button:focused{
+	-fx-background-color: orangered;
+}
+
+
+VBox{
+	-fx-background-color: white;
+}
+
+TextArea{
+	-fx-background-color: orange;
+	-fx-background-fills: white;
+}
+
+TextArea:focused{
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color:orange;
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+ TextField:focused{
+ 	-fx-border-color: orange;
+ 	-fx-border-style: solid;
+ 	-fx-border-width: 4px;
+ }
+
+TextField{
+	-fx-border-color:orange;
+	-fx-background-color: white;
+}
+
+MenuItem{
+	-fx-text-fill: white;
+	-fx-background-color: orange;
+}
+
