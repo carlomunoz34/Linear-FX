@@ -27,6 +27,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class LinearTransformationGUI extends Application {
+	public ResourceBundle rb;
+	public LinearTransformationGUI(ResourceBundle rb){
+		this.rb=rb;
+	}
 	private static final double TEXT_AREA_HEIGHT = 120.0, TEXT_AREA_WIDTH = 100.0;
 	private static final double BUTTON_WIDTH = 70.0;
 	private LinearTransformationControl control;
@@ -47,7 +51,7 @@ public class LinearTransformationGUI extends Application {
 		// The saved lt will be displayed here
 		Menu favorites = new Menu("Favoritos");
 		// Change window
-		Menu changeWindow = new Menu("Cambiar Pestaña");
+		Menu changeWindow = new Menu("Cambiar PestaÃ±a");
 		// Help displays how to use this section
 		Menu help = new Menu("Ayuda");
 
@@ -81,6 +85,7 @@ public class LinearTransformationGUI extends Application {
 		changeWindow.getItems().addAll(goHome);
 
 		// Add items to the help section
+
 		MenuItem aboutLT = new MenuItem("Acerca de las TL");
 		aboutLT.setOnAction(event -> {
 			try {
@@ -100,13 +105,12 @@ public class LinearTransformationGUI extends Application {
 		 */
 		GridPane gridPane = new GridPane();
 
-		// In this part you can modify or create the lt
-		Label transformationLbl = new Label("Transformación");
+		//In this part you can modify or create the lt
+		Label transformationLbl = new Label("TransformaciÃ³n");
 		GridPane.setConstraints(transformationLbl, 0, 0);
 
 		// The purpose of this text area is to show the equations of the lt per line
 		TextArea equationTA = new TextArea();
-//		equationTA.setDisable(true);
 		equationTA.setPrefHeight(TEXT_AREA_HEIGHT);
 		equationTA.setPrefWidth(TEXT_AREA_WIDTH);
 		GridPane.setConstraints(equationTA, 0, 1);
@@ -207,7 +211,7 @@ public class LinearTransformationGUI extends Application {
 				alert.show();
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
-				Alert alert = new Alert(AlertType.ERROR, "Transformación lineal no creada", ButtonType.OK);
+				Alert alert = new Alert(AlertType.ERROR, "Transformaciï¿½n lineal no creada", ButtonType.OK);
 				alert.show();
 				e.printStackTrace();
 			}
@@ -229,7 +233,7 @@ public class LinearTransformationGUI extends Application {
 					favorites.getItems().add(deleteFavorites);
 				}
 
-				String name = JOptionPane.showInputDialog("Dame el nombre de la transformación");
+				String name = JOptionPane.showInputDialog("Dame el nombre de la transformaciï¿½n");
 				control.getCurrentLT().setName(name);
 
 				try {
@@ -283,5 +287,4 @@ public class LinearTransformationGUI extends Application {
 		primaryStage.setWidth(420);
 		primaryStage.show();
 	}
-
 }
