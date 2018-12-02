@@ -121,7 +121,6 @@ public class MatrixGUI extends Application {
 		Button dotPTutorial= new Button(rb.getString("m_tutorials"));
 
 		tutorialOptions.getChildren().addAll(dotPTutorial);
-		/*
 		dotPTutorial.setOnAction((event)->{
 			WebSite w=new WebSite();
 			try {
@@ -130,8 +129,6 @@ public class MatrixGUI extends Application {
 				e.printStackTrace();
 			}
 		});
-*/
-
 		root.setSpacing(5d);
 		root.getChildren().addAll(menu,mainResults,tutorialOptions);
 
